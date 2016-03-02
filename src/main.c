@@ -64,15 +64,19 @@ int Menu_Main(void)
     OSScreenSetBufferEx(0, screenBuffer);
     OSScreenSetBufferEx(1, (screenBuffer + screen_buf0_size));
 
-    //! TODO: find out why TV screen is distorted, for now TV is disabled
-    OSScreenEnableEx(0, 0);
+    OSScreenEnableEx(0, 1);
     OSScreenEnableEx(1, 1);
 
     // Clear screens
     OSScreenClearBufferEx(0, 0);
     OSScreenClearBufferEx(1, 0);
 
-    OSScreenPutFontEx(1, 0, 0, "Hello world!!!");
+    // print to TV
+    OSScreenPutFontEx(0, 0, 0, "Hello world on TV!!!");
+    OSScreenPutFontEx(0, 0, 1, "Press HOME-Button to exit.");
+
+    // print to DRC
+    OSScreenPutFontEx(1, 0, 0, "Hello world on DRC!!!");
     OSScreenPutFontEx(1, 0, 1, "Press HOME-Button to exit.");
 
     // Flush the cache
